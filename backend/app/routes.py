@@ -39,7 +39,7 @@ def add_document():
         "metadata": data["metadata"]
     }
     documents.insert_one(document)
-    embedding = mock_embed(doc_text)
+    embedding = embedd_text(doc_text)
     chroma_collection.add(
         ids=[doc_id],
         documents=[doc_text],
