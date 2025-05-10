@@ -44,11 +44,15 @@ body {
 
 /* Chat container */
 .chat-container {
+    display: flex;
     flex: 1;
     overflow-y: auto;
     padding: 20px;
     background-color: #161b22;
+    flex-direction: column;
+    gap: 10px;
 }
+
 
 /* Message bubble */
 .message {
@@ -143,7 +147,8 @@ body {
 
 /* Chat message bubbles */
 .message {
-    max-width: 70%;
+    max-width: 80%;
+    width: 100%;
     padding: 10px 14px;
     border-radius: 12px;
     margin: 8px 0;
@@ -159,8 +164,8 @@ body {
     border-bottom-right-radius: 0;
 }
 
-.model-message {
-    background-color: #34495e;
+.system-message {
+    background-color: #0d1117;
     color: #ecf0f1;
     align-self: flex-start;
     border-bottom-left-radius: 0;
