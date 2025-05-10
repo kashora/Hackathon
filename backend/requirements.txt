@@ -6,3 +6,9 @@ numpy
 pandas
 dotenv
 sentence_transformers
+scikit-learn
+langchain
+google
+langchain_core
+langchain_google_genai
+langgraph

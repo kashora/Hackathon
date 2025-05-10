@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.db import employees, documents, chroma_collection
-from app.utils import generate_uuid, get_timestamp, embedd_text
+from app.utils import generate_uuid, get_timestamp, embedd_text, retrieve_from_db
+from .orchestrator_agent import run_orchestration
 from .config import MONGO_URI
 main_bp = Blueprint('main', __name__)
 
@@ -11,13 +12,22 @@ def welcome_route():
 @main_bp.route('/add_employee', methods=['POST'])
 def add_employee():
     data = request.json
+
+    if not data.get("email") or not data.get("username"):
+        return jsonify({"error": "Email and username are required."}), 400
+    
+    if employees.find_one({"$or": [{"email": data.get("email")}, {"username": data.get("username")}]}):
+        return jsonify({"error": "Username or email already exists."}), 400
+    
     emp_id = generate_uuid("emp")
     employee = {
         "_id": emp_id,
-        "name": data["name"],
+        "first_name": data["first_name"],
+        "last_name": data["last_name"],
         "email": data["email"],
+        "hashed_password": data["hashed_password"],
         "role": data["role"],
-        "access_level": data["access_level"],
+        "corporate_level": data["access_level"],
         "department": data["department"]
     }
     employees.insert_one(employee)
@@ -26,17 +36,20 @@ def add_employee():
 @main_bp.route('/add_document', methods=['POST'])
 def add_document():
     data = request.json
-    doc_id = generate_uuid("doc")
-    doc_text = data["text"]
+    doc_id = generate_uuid("data")
+    doc_text = data.get("text")
+    if not doc_text:
+        return jsonify({"error": "No document text received."}), 400
     document = {
         "_id": doc_id,
-        "title": data["title"],
         "text": doc_text,
+        "department": data.get("department", "unknown"),
         "source": data.get("source", "unknown"),
         "created_at": get_timestamp(),
-        "author_id": data["author_id"],
-        "access_level": data["access_level"],
-        "metadata": data["metadata"]
+        "employees": data.get("employees"),
+        "access_level": data.get("access_level"),
+        "metadata": data.get("metadata"),
+        "company_name": data.get("company_name", "unknown")
     }
     documents.insert_one(document)
     embedding = embedd_text(doc_text)
@@ -47,31 +60,19 @@ def add_document():
             "doc_id": doc_id,
             "access_level": data["access_level"],
             "department": data["metadata"]["department"]
-        }]
+        }],
+        embeddings=[embedding]
     )
     return jsonify({"message": "Document added", "id": doc_id})
 
-@main_bp.route('/search', methods=['POST'])
-def search_documents():
-    query = request.json["query"]
-    user_access_level = request.json["access_level"]
+@main_bp.route('/neurocorp', methods=['POST'])
+def corporate_brain():
+    prompts = request.json["prompts"]
+    # user_access_level = request.json.get("access_level", 5)
+    
+    knowledge_base = retrieve_from_db(prompts)
 
-    results = chroma_collection.query(
-        query_texts=[query],
-        n_results=5
-    )
+    agents_res = run_orchestration(prompts, knowledge_base)
 
-    filtered = []
-    for i, metadata in enumerate(results['metadatas'][0]):
-        if metadata["access_level"] <= user_access_level:
-            doc_id = metadata["doc_id"]
-            doc = documents.find_one({"_id": doc_id})
-            if doc:
-                filtered.append({
-                    "title": doc["title"],
-                    "text": doc["text"],
-                    "source": doc["source"],
-                    "department": metadata["department"]
-                })
-
-    return jsonify({"results": filtered})
+    return agents_res
+    
