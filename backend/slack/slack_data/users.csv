@@ -1,0 +1,8 @@
+id,name,real_name,display_name,email,title,phone,is_admin,is_bot,updated
+USLACKBOT,slackbot,Slackbot,Slackbot,,,,False,False,0
+U08RLGP8M4N,neurocorp,NeuroCorp,,,,,False,True,1746890471
+U08RQH428R3,kalshouraa,karam,,,,,False,False,1746889518
+U08RQH50A05,mustafa.alaraj,Mustafa B M Alaraj,,,,,False,False,1746889529
+U08RQH5U3NH,madian.mohammad,Madian Mohammad,,,,,False,False,1746889483
+U08S545HFBK,infinidev1,infinidev Admin,,,,,True,False,1746889629
+U08SF74PG5N,wf_bot_a08sf74180g,Channel icebreaker,,,,,False,True,1746889382

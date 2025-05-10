@@ -1,0 +1,5 @@
+id,name,is_private,is_archived,created,creator,topic,purpose,num_members
+C08RCN0K11V,new-channel,False,False,1746889476,U08S545HFBK,,"This channel is for everything #new-channel. Hold meetings, share docs, and make decisions together with your team.",5
+C08RQKERLSH,sqlalchemy-to-ibis-migration,False,False,1746892223,U08S545HFBK,,,5
+C08S545PCD7,all-infinidev,False,False,1746889358,U08S545HFBK,,"Share announcements and updates about company news, upcoming events, or teammates who deserve some kudos. ⭐",5
+C08S545Q2BT,social,False,False,1746889358,U08S545HFBK,,Other channels are for work. This one’s just for fun. Get to know your teammates and show your lighter side. 🎈,6

@@ -1,0 +1,240 @@
+[
+  {
+    "id": "C08RCN0K11V",
+    "name": "new-channel",
+    "is_channel": true,
+    "is_group": false,
+    "is_im": false,
+    "is_mpim": false,
+    "is_private": false,
+    "created": 1746889476,
+    "is_archived": false,
+    "is_general": false,
+    "unlinked": 0,
+    "name_normalized": "new-channel",
+    "is_shared": false,
+    "is_org_shared": false,
+    "is_pending_ext_shared": false,
+    "pending_shared": [],
+    "context_team_id": "T08S545H865",
+    "updated": 1746889476925,
+    "parent_conversation": null,
+    "creator": "U08S545HFBK",
+    "is_ext_shared": false,
+    "shared_team_ids": [
+      "T08S545H865"
+    ],
+    "pending_connected_team_ids": [],
+    "is_member": true,
+    "topic": {
+      "value": "",
+      "creator": "",
+      "last_set": 0
+    },
+    "purpose": {
+      "value": "This channel is for everything #new-channel. Hold meetings, share docs, and make decisions together with your team.",
+      "creator": "U08S545HFBK",
+      "last_set": 1746889476
+    },
+    "properties": {
+      "tabs": [
+        {
+          "label": "Canvas",
+          "type": "channel_canvas",
+          "is_disabled": true,
+          "id": "channel_canvas"
+        }
+      ],
+      "tabz": [
+        {
+          "label": "Canvas",
+          "type": "channel_canvas",
+          "is_disabled": true
+        }
+      ],
+      "use_case": "project"
+    },
+    "previous_names": [],
+    "num_members": 5
+  },
+  {
+    "id": "C08RQKERLSH",
+    "name": "sqlalchemy-to-ibis-migration",
+    "is_channel": true,
+    "is_group": false,
+    "is_im": false,
+    "is_mpim": false,
+    "is_private": false,
+    "created": 1746892223,
+    "is_archived": false,
+    "is_general": false,
+    "unlinked": 0,
+    "name_normalized": "sqlalchemy-to-ibis-migration",
+    "is_shared": false,
+    "is_org_shared": false,
+    "is_pending_ext_shared": false,
+    "pending_shared": [],
+    "context_team_id": "T08S545H865",
+    "updated": 1746892223389,
+    "parent_conversation": null,
+    "creator": "U08S545HFBK",
+    "is_ext_shared": false,
+    "shared_team_ids": [
+      "T08S545H865"
+    ],
+    "pending_connected_team_ids": [],
+    "is_member": true,
+    "topic": {
+      "value": "",
+      "creator": "",
+      "last_set": 0
+    },
+    "purpose": {
+      "value": "",
+      "creator": "",
+      "last_set": 0
+    },
+    "previous_names": [],
+    "num_members": 5
+  },
+  {
+    "id": "C08S545PCD7",
+    "name": "all-infinidev",
+    "is_channel": true,
+    "is_group": false,
+    "is_im": false,
+    "is_mpim": false,
+    "is_private": false,
+    "created": 1746889358,
+    "is_archived": false,
+    "is_general": true,
+    "unlinked": 0,
+    "name_normalized": "all-infinidev",
+    "is_shared": false,
+    "is_org_shared": false,
+    "is_pending_ext_shared": false,
+    "pending_shared": [],
+    "context_team_id": "T08S545H865",
+    "updated": 1746889377223,
+    "parent_conversation": null,
+    "creator": "U08S545HFBK",
+    "is_ext_shared": false,
+    "shared_team_ids": [
+      "T08S545H865"
+    ],
+    "pending_connected_team_ids": [],
+    "is_member": true,
+    "topic": {
+      "value": "",
+      "creator": "",
+      "last_set": 0
+    },
+    "purpose": {
+      "value": "Share announcements and updates about company news, upcoming events, or teammates who deserve some kudos. \u2b50",
+      "creator": "U08S545HFBK",
+      "last_set": 1746889358
+    },
+    "properties": {
+      "tabs": [
+        {
+          "id": "Ct08S53XGN73",
+          "type": "canvas",
+          "data": {
+            "file_id": "F08S53XEZNV",
+            "shared_ts": "1746889363.033939"
+          },
+          "label": ""
+        }
+      ],
+      "tabz": [
+        {
+          "id": "Ct08S53XGN73",
+          "type": "canvas",
+          "data": {
+            "file_id": "F08S53XEZNV",
+            "shared_ts": "1746889363.033939"
+          }
+        }
+      ],
+      "use_case": "welcome"
+    },
+    "previous_names": [
+      "all-new-workspace"
+    ],
+    "num_members": 5
+  },
+  {
+    "id": "C08S545Q2BT",
+    "name": "social",
+    "is_channel": true,
+    "is_group": false,
+    "is_im": false,
+    "is_mpim": false,
+    "is_private": false,
+    "created": 1746889358,
+    "is_archived": false,
+    "is_general": false,
+    "unlinked": 0,
+    "name_normalized": "social",
+    "is_shared": false,
+    "is_org_shared": false,
+    "is_pending_ext_shared": false,
+    "pending_shared": [],
+    "context_team_id": "T08S545H865",
+    "updated": 1746889372277,
+    "parent_conversation": null,
+    "creator": "U08S545HFBK",
+    "is_ext_shared": false,
+    "shared_team_ids": [
+      "T08S545H865"
+    ],
+    "pending_connected_team_ids": [],
+    "is_member": true,
+    "topic": {
+      "value": "",
+      "creator": "",
+      "last_set": 0
+    },
+    "purpose": {
+      "value": "Other channels are for work. This one\u2019s just for fun. Get to know your teammates and show your lighter side. \ud83c\udf88",
+      "creator": "U08S545HFBK",
+      "last_set": 1746889358
+    },
+    "properties": {
+      "tabs": [
+        {
+          "id": "Ct08RLFS6DN2",
+          "type": "list",
+          "data": {
+            "file_id": "F08RLFQJL22",
+            "shared_ts": "1746889361.818289",
+            "mute_edit_updates": true
+          },
+          "label": ""
+        },
+        {
+          "type": "workflows",
+          "label": "",
+          "id": "workflows"
+        }
+      ],
+      "tabz": [
+        {
+          "id": "Ct08RLFS6DN2",
+          "type": "list",
+          "data": {
+            "file_id": "F08RLFQJL22",
+            "shared_ts": "1746889361.818289",
+            "mute_edit_updates": true
+          }
+        },
+        {
+          "type": "workflows"
+        }
+      ],
+      "use_case": "random"
+    },
+    "previous_names": [],
+    "num_members": 6
+  }
+]

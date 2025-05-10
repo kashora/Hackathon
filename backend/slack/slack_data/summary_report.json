@@ -1,0 +1,15 @@
+{
+  "workspace_name": "InfiniDev",
+  "collection_date": "2025-05-10 20:04:08",
+  "num_users": 7,
+  "num_channels": 4,
+  "user_types": {
+    "regular_users": 5,
+    "bots": 2,
+    "deleted_users": 0
+  },
+  "channel_types": {
+    "active_channels": 4,
+    "archived_channels": 0
+  }
+}
