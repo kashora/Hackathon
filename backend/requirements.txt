@@ -1,0 +1,8 @@
+Flask
+pymongo
+chromadb
+uuid
+numpy
+pandas
+dotenv
+sentence_transformers
