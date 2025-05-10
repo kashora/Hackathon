@@ -67,12 +67,15 @@ def add_document():
 
 @main_bp.route('/neurocorp', methods=['POST'])
 def corporate_brain():
-    prompts = request.json["prompts"]
+    body = request.json
+    prompts = body["messages"]
     # user_access_level = request.json.get("access_level", 5)
     
     knowledge_base = retrieve_from_db(prompts)
 
     agents_res = run_orchestration(prompts, knowledge_base)
 
-    return agents_res
+    if not agents_res:
+        return jsonify({"error": "no information generated"})
+    return jsonify({"reply": agents_res})
     

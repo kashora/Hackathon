@@ -7,7 +7,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain.prompts import ChatPromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 from typing import List
-from db import chroma_collection, documents
+from .db import chroma_collection, documents
 from langchain.load import dumps, loads
 import json
 from dotenv import load_dotenv

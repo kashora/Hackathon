@@ -187,7 +187,7 @@ def run_orchestration(
     
     
     if final_state and final_state.get("final_report") and final_state.get("final_report") != "cannot generate response":
-        return final_state
+        return final_state['final_report']
     else:
         return "Error: Could not generate report."
 

@@ -76,7 +76,7 @@ function renderChat() {
 
   chatBox.scrollTop = chatBox.scrollHeight;
 }
-async function typeWriterEffect(element, text, speed = 20) {
+async function typeWriterEffect(element, text, speed = 5) {
   for (let i = 0; i <= text.length; i++) {
     element.innerText = text.slice(0, i);
     await new Promise(resolve => setTimeout(resolve, speed));
@@ -97,7 +97,7 @@ async function sendMessage() {
   renderChat();
 
   try {
-    const response = await fetch('/api/fake-endpoint', {
+    const response = await fetch('http://127.0.0.1:5000/neurocorp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
