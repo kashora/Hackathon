@@ -11,6 +11,7 @@ from .db import chroma_collection, documents
 from langchain.load import dumps, loads
 import json
 from dotenv import load_dotenv
+import pickle
 
 load_dotenv() # to load gemini API key
 
@@ -57,13 +58,16 @@ def get_different_prompts(chat_history: List[List[str]]):
 
     return query_list
 
-def get_relevant_documents_ids(prompt_embeddings, max_num_of_docs) -> List[str]:
+def get_relevant_documents_ids(prompt_embeddings, max_num_of_docs, minimum_score = 0.65) -> List[str]:
     results = chroma_collection.query(
         query_embeddings=[prompt_embeddings],  # your_embedding is a list of floats
         n_results=max_num_of_docs
     )
-    documents_ids = results.get("ids", [None])[0]
-    return documents_ids
+    ids = results.get("ids", [[]])[0]
+    scores = results.get("distances", [[]])[0]
+    print(ids, scores)
+    relevant_ids = [doc_id for doc_id, score in zip(ids, scores) if score > minimum_score]
+    return relevant_ids
 
 def reciprocal_rank_fusion(results: list[list], k=60):
     """ Reciprocal_rank_fusion that takes multiple lists of ranked documents 
@@ -73,19 +77,22 @@ def reciprocal_rank_fusion(results: list[list], k=60):
 
     for docs in results:
         for rank, doc in enumerate(docs):
+            doc_bytes = pickle.dumps(doc)  # Keep as bytes
+            if doc_bytes not in fused_scores:
+                fused_scores[doc_bytes] = 0
+            fused_scores[doc_bytes] += 1 / (rank + k)
 
-            doc_str = json.dumps(doc, sort_keys=True)
-            if doc_str not in fused_scores:
-                fused_scores[doc_str] = 0
-            fused_scores[doc_str] += 1 / (rank + k)
-
-    reranked_results = [json.loads(doc) for doc, _ in sorted(fused_scores.items(), key=lambda x: x[1], reverse=True)]
+    reranked_results = [
+        pickle.loads(doc_bytes)
+        for doc_bytes, _ in sorted(fused_scores.items(), key=lambda x: x[1], reverse=True)
+    ]
 
     return reranked_results
 
+
 def get_documents_per_prompt(prompt, max_num_of_docs: int = 10):
     prompt_embeddings = embedd_text(prompt)
-    if not prompt_embeddings:
+    if not len(list(prompt_embeddings)) > 0:
         return
     
     data_ids = get_relevant_documents_ids(prompt_embeddings, max_num_of_docs)
@@ -108,11 +115,11 @@ def retrieve_from_db(chat_history: List[List[str]]):
     preprocessed_prompts = get_different_prompts(chat_history)
     if not preprocessed_prompts:
         return
-    
+
     relevant_documents = get_all_relevant_documents(preprocessed_prompts)
 
     try:
-        stringified_documents = json.dumps(relevant_documents)
+        stringified_documents = pickle.dumps(relevant_documents)
         return stringified_documents
     except Exception as e:
         return

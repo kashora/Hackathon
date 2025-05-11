@@ -25,13 +25,14 @@ def add_employee():
         "first_name": data["first_name"],
         "last_name": data["last_name"],
         "email": data["email"],
+        "username": data["username"],
         "hashed_password": data["hashed_password"],
         "role": data["role"],
         "corporate_level": data["access_level"],
         "department": data["department"]
     }
     employees.insert_one(employee)
-    return jsonify({"message": "Employee added", "id": emp_id})
+    return jsonify({"message": "Successfully added employee", "id": emp_id})
 
 @main_bp.route('/add_document', methods=['POST'])
 def add_document():
@@ -48,7 +49,6 @@ def add_document():
         "created_at": get_timestamp(),
         "employees": data.get("employees"),
         "access_level": data.get("access_level"),
-        "metadata": data.get("metadata"),
         "company_name": data.get("company_name", "unknown")
     }
     documents.insert_one(document)
@@ -58,8 +58,8 @@ def add_document():
         documents=[doc_text],
         metadatas=[{
             "doc_id": doc_id,
-            "access_level": data["access_level"],
-            "department": data["metadata"]["department"]
+            "access_level": data.get("access_level"),
+            "department": data.get("department", "unknown")
         }],
         embeddings=[embedding]
     )

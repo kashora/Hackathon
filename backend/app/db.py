@@ -11,4 +11,6 @@ documents = mongo_db["data"]
 
 # ChromaDB setup
 chroma_client = HttpClient(host="localhost", port=8000)
-chroma_collection = chroma_client.get_or_create_collection(CHROMA_COLLECTION)
+chroma_collection = chroma_client.get_or_create_collection(
+    name=CHROMA_COLLECTION,
+    metadata={"hnsw:space": "cosine"})
