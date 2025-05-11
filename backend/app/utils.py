@@ -8,7 +8,6 @@ from langchain.prompts import ChatPromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 from typing import List
 from .db import chroma_collection, documents
-from langchain.load import dumps, loads
 import json
 from dotenv import load_dotenv
 import pickle
@@ -65,7 +64,6 @@ def get_relevant_documents_ids(prompt_embeddings, max_num_of_docs, minimum_score
     )
     ids = results.get("ids", [[]])[0]
     scores = results.get("distances", [[]])[0]
-    print(ids, scores)
     relevant_ids = [doc_id for doc_id, score in zip(ids, scores) if score > minimum_score]
     return relevant_ids
 
@@ -77,13 +75,14 @@ def reciprocal_rank_fusion(results: list[list], k=60):
 
     for docs in results:
         for rank, doc in enumerate(docs):
-            doc_bytes = pickle.dumps(doc)  # Keep as bytes
+            _ = doc.pop("created_at")
+            doc_bytes = json.dumps(doc) # Keep as bytes
             if doc_bytes not in fused_scores:
                 fused_scores[doc_bytes] = 0
             fused_scores[doc_bytes] += 1 / (rank + k)
 
     reranked_results = [
-        pickle.loads(doc_bytes)
+        json.loads(doc_bytes)
         for doc_bytes, _ in sorted(fused_scores.items(), key=lambda x: x[1], reverse=True)
     ]
 
@@ -107,7 +106,7 @@ def get_all_relevant_documents(prompt_list: List[str], max_num_of_all_docs: int 
         all_documents.append(get_documents_per_prompt(prompt))
     
     all_documents_reranked = reciprocal_rank_fusion(all_documents)
-    
+
     return all_documents_reranked[:max_num_of_all_docs]
 
 def retrieve_from_db(chat_history: List[List[str]]):
@@ -119,7 +118,7 @@ def retrieve_from_db(chat_history: List[List[str]]):
     relevant_documents = get_all_relevant_documents(preprocessed_prompts)
 
     try:
-        stringified_documents = pickle.dumps(relevant_documents)
+        stringified_documents = json.dumps(relevant_documents)
         return stringified_documents
     except Exception as e:
         return
