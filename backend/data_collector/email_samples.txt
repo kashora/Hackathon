@@ -1,0 +1,30 @@
+test
+[image: Google]
+test123 was granted access to your Google Account
+
+
+infinidev2@gmail.com
+
+If you did not grant access, you should check this activity and secure your
+account.
+Check activity
+<https://accounts.google.com/AccountChooser?Email=infinidev2@gmail.com&continue=https://myaccount.google.com/alert/nt/1746890914000?rfn%3D127%26rfnc%3D1%26eid%3D5620780806173797878%26et%3D0>
+You can also see security activity at
+https://myaccount.google.com/notifications
+You received this email to let you know about important changes to your
+Google Account and services.
+© 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA
+[image: Google]
+Recovery phone was changed
+
+
+infinidev2@gmail.com
+The recovery phone for your account was changed. If you didn't change it,
+you should check what happened.
+Check activity
+<https://accounts.google.com/AccountChooser?Email=infinidev2@gmail.com&continue=https://myaccount.google.com/alert/nt/1746878524974?rfn%3D4%26rfnc%3D1%26eid%3D-7938774739994794943%26et%3D0>
+You can also see security activity at
+https://myaccount.google.com/notifications
+You received this email to let you know about important changes to your
+Google Account and services.
+© 2025 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA

@@ -12,3 +12,5 @@ google
 langchain_core
 langchain_google_genai
 langgraph
+simplegmail
+slack_sdk

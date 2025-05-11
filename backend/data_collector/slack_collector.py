@@ -142,6 +142,27 @@ def fetch_all_channels():
         logging.error(f"Error fetching channels: {e}")
         return []
 
+    
+
+def get_all_messages():
+    messages = fetch_all_channels()
+    # map each user id to their email
+    user_map = {}
+    for user in fetch_all_users():
+        user_map[user["id"]] = user["profile"]["real_name"]
+    
+    # go through the messages and replace the user id with their email
+    for message in messages:
+        if "user" in message:
+            message["user"] = user_map.get(message["user"], message["user"])
+        if "replies" in message:
+            for reply in message["replies"]:
+                reply["user"] = user_map.get(reply["user"], reply["user"])
+    
+    return messages
+
+
+
 def fetch_channel_messages(channel_id, channel_name):
     """Fetch and save messages from a specific channel"""
     logging.info(f"Fetching messages for channel: {channel_name} ({channel_id})")
@@ -332,3 +353,8 @@ if __name__ == "__main__":
     main()
     end_time = time.time()
     logging.info(f"Script execution completed in {end_time - start_time:.2f} seconds")
+
+    msg = get_all_messages()
+    print()
+    print('finish')
+    print(msg)
