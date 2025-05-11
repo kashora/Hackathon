@@ -3,6 +3,7 @@ import chromadb
 from chromadb import HttpClient
 from .config import MONGO_URI, MONGO_CLIENT, CHROMA_COLLECTION
 
+
 # MongoDB setup
 mongo_client = MongoClient(MONGO_URI)
 mongo_db = mongo_client[MONGO_CLIENT]

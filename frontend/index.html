@@ -1,41 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Procedure Assistant</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <title>NeuroCorp</title>
+    <link rel="stylesheet" href="css/style.css" /> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- PDF Generation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
 </head>
 
 <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="new-chat">
+            <i class="fas fa-edit"></i>
+        </div>
+        <div class="sidebar-bottom">
+            <div class="sidebar-icon">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+    </div>
 
-    <div class="chat-wrapper">
-
-        <!-- Chat content -->
-        <div class="chat-container" id="chat-container">
-            <div class="message bot">
-                <strong>🧠 Multi-Agent Thinking</strong><br>
-                Agent 1 analyzing relevant procedures...<br>
-                Agent 2 summarizing outcomes...<br>
-                Agent 3 drafting the final report...
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+            <div class="app-name">NeuroCorp</div>
+            <div class="version-selector">
+                1.0 <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="header-right">
+                <div class="try-advanced">
+                    <i class="fas fa-star"></i>
+                    Try Advanced
+                </div>
+                <div class="header-icon">
+                    <i class="fas fa-trash"></i>
+                </div>
+                <div class="header-icon">
+                    <i class="fas fa-th"></i>
+                </div>
+                <div class="avatar">P</div>
             </div>
         </div>
 
-        <!-- Chat input -->
-        <div class="input-bar">
-            <input type="text" id="chat-input" placeholder="Ask about a procedure..." autocomplete="off"/>
-            <button id="send-btn"><i class="fa fa-paper-plane"></i> Send</button>
-            <button id="report-btn" class="report-btn" disabled><i class="fa fa-file-pdf-o"></i> Generate
-                Report</button>
+        <!-- Chat container -->
+        <div id="chat-container" class="chat-container">
+            <div class="welcome-message">Hello, <span>NeuroCorper</span></div>
         </div>
 
+        <!-- Input area -->
+        <div class="input-area">
+            <div class="input-container">
+                <div class="input-icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <textarea id="chat-input" placeholder="Ask about a procedure..." rows="1"></textarea>
+                <div class="input-actions">
+                    <button id="report-btn" class="action-button" disabled>
+                        <i class="fas fa-file-pdf"></i>
+                    </button>
+                    <button id="send-btn" class="action-button" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- Hidden PDF Preview Area -->
+    <div id="pdf-preview">
+        <div id="pdf-content"></div>
+    </div>
+
+    <script src="js/main.js"></script>
+
 </body>
-<script src="js/main.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </html>

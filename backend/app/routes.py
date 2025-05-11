@@ -71,11 +71,12 @@ def corporate_brain():
     prompts = body["messages"]
     # user_access_level = request.json.get("access_level", 5)
     
+    
     knowledge_base = retrieve_from_db(prompts)
 
     agents_res = run_orchestration(prompts, knowledge_base)
 
     if not agents_res:
         return jsonify({"error": "no information generated"})
-    return jsonify({"reply": agents_res})
+    return jsonify(agents_res)
     
